@@ -1,0 +1,133 @@
+.login-wrapper {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #111;
+}
+
+.login-box {
+  background: #1b1d21;
+  color: #eee;
+  padding: 32px;
+  width: 420px;
+  border-radius: 12px;
+  box-shadow: 0 0 32px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-title {
+  font-size: 28px;
+  margin-bottom: 12px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.login-box label {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.login-box input[type="text"],
+.login-box input[type="email"],
+.login-box input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  background: #0f1214;
+  color: #eee;
+  border: 1px solid #2d3338;
+  border-radius: 6px;
+  transition: all 0.25s;
+  outline: none;
+}
+
+.login-box input:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 2px rgba(13,110,253,0.2);
+}
+
+.login-remember {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.login-btn {
+  margin-top: 16px;
+  padding: 12px;
+  border: none;
+  background: #0d6efd;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.login-btn:hover {
+  background: #0a5ed5;
+}
+
+.login-register {
+  margin-top: 16px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.login-register a {
+  color: #4da3ff;
+  text-decoration: none;
+}
+
+.login-register a:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 480px) {
+  .login-box {
+    width: 90%;
+    padding: 24px;
+  }
+}
+
+.password-field {
+  position: relative;
+  width: 100%;
+}
+
+.password-field input {
+  width: 100%;
+  padding: 12px;
+  padding-right: 45px;
+  background: #0f1214;
+  color: #eee;
+  border: 1px solid #2d3338;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-password img {
+  width: 22px;
+  height: 22px;
+  opacity: 0.6;
+  transition: 0.2s;
+}
+
+.toggle-password img:hover {
+  opacity: 1;
+}

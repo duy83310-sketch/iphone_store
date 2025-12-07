@@ -1,0 +1,13 @@
+# ---- Backend ----
+backend/node_modules/
+backend/.env
+
+# ---- Frontend ----
+frontend-user/node_modules/
+frontend-user/.env
+
+# ---- System ----
+npm-debug.log
+yarn-debug.log
+.DS_Store
+Thumbs.db
