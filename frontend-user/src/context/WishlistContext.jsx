@@ -1,71 +1,85 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
+import { API } from "../utils/config";
 
 const WishlistContext = createContext();
 export default WishlistContext;
 
-// ----- Custom hook -----
 export function useWishlist() {
   return useContext(WishlistContext);
 }
 
 export function WishlistProvider({ children }) {
   const { user } = useContext(AuthContext);
+  const [wishlist, setWishlist] = useState([]); // ["1","2","5"]
 
-  // ----- Storage key based on user -----
-  // Logged-in user gets their own wishlist.
-  // Guests share a generic one.
-  const storageKey = user ? `wishlist_${user.id}` : `wishlist_guest`;
-
-  const [wishlist, setWishlist] = useState([]);
-
-  // ----- Load initial wishlist -----
-  // Retrieve stored data whenever storageKey changes (user login/logout).
+  // ===== Load wishlist when user login =====
   useEffect(() => {
-    const stored = localStorage.getItem(storageKey);
-    if (stored) setWishlist(JSON.parse(stored));
-  }, [storageKey]);
-
-  // ----- Persist wishlist -----
-  // Save wishlist after any change to keep data across refresh.
-  useEffect(() => {
-    localStorage.setItem(storageKey, JSON.stringify(wishlist));
-  }, [wishlist, storageKey]);
-
-  /**
-   * Add product if not already present
-   * @param {Object} product
-   */
-  const addToWishlist = (product) => {
-    if (!wishlist.some((p) => p.id === product.id)) {
-      setWishlist([...wishlist, product]);
+    if (!user) {
+      setWishlist([]);
+      return;
     }
-  };
 
-  /**
-   * Remove product by ID
-   * @param {number|string} id
-   */
-  const removeFromWishlist = (id) => {
-    setWishlist(wishlist.filter((p) => p.id !== id));
-  };
+    const token = localStorage.getItem("token");
+    if (!token) return;
 
-  /**
-   * Check if product is already in wishlist
-   * @param {number|string} id
-   * @returns {boolean}
-   */
-  const isInWishlist = (id) => {
-    return wishlist.some((p) => p.id === id);
-  };
+    fetch(`${API}/auth/wishlist`, {
+      headers: { "x-auth-token": token }
+    })
+      .then(res => res.json())
+      .then(data => {
+        // data is an array of product objects returned by GET /auth/wishlist
+        setWishlist(Array.isArray(data) ? data : []);
+      })
+      .catch(() => setWishlist([]));
+  }, [user]);
 
-  // ----- Context value exposed to components -----
+  /** ===== Add wishlist (productId only) ===== */
+  async function addToWishlist(product) {
+    const token = localStorage.getItem("token");
+    if (!user || !token) return;
+
+    const res = await fetch(`${API}/auth/wishlist`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": token
+      },
+      body: JSON.stringify({
+        productId: product.id
+      })
+    });
+
+    const data = await res.json();
+    setWishlist(Array.isArray(data) ? data : []);
+  }
+
+  /** ===== Remove wishlist (by productId) ===== */
+  async function removeFromWishlist(productId) {
+    const token = localStorage.getItem("token");
+    if (!user || !token) return;
+
+    const res = await fetch(`${API}/auth/wishlist/${productId}`, {
+      method: "DELETE",
+      headers: {
+        "x-auth-token": token
+      }
+    });
+
+    const data = await res.json();
+    setWishlist(Array.isArray(data) ? data : []);
+  }
+
+  /** ===== Check wishlist (by productId only) ===== */
+  function isInWishlist(productId) {
+    return wishlist.some(p => String(p.productId) === String(productId));
+  }
+
   const value = {
     wishlist,
-    setWishlist,
     addToWishlist,
     removeFromWishlist,
-    isInWishlist,
+    isInWishlist
   };
 
   return (

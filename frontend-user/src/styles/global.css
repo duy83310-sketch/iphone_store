@@ -73,3 +73,214 @@ button:hover{
   margin-bottom: 20px;
   text-align: center;
 }
+
+/* ===== GOLD BUTTON (Primary CTA) ===== */
+.btn-gold {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #e0b36a, #b8832f, #8a5a2b);
+  color: #1b1b1b;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.btn-gold:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(224,179,106,0.35);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(224,179,106,0.25);
+}
+
+/* ===== GOLD BUTTON (Large / Buy Now) ===== */
+.btn-gold--lg {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #e6c27a, #c8943f, #9a6732);
+  box-shadow: 0 6px 18px rgba(198,121,45,0.35);
+}
+
+.btn-gold--lg:hover {
+  box-shadow: 0 10px 28px rgba(198,121,45,0.5);
+}
+
+/* ===== GOLD OUTLINE (Wishlist / Secondary) ===== */
+.btn-gold-outline {
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid rgba(224,179,106,0.6);
+  color: #e0b36a;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease, transform .15s ease;
+}
+
+.btn-gold-outline:hover {
+  background: rgba(224,179,106,0.12);
+  transform: translateY(-1px);
+}
+
+/* Active state (wishlist) */
+.btn-gold-outline.is-active {
+  background: rgba(245,130,130,0.18);
+  color: #f58282;
+  border-color: rgba(245,130,130,0.6);
+}
+
+/* ===== WISHLIST BUTTON ===== */
+.btn-wishlist {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid rgba(224,179,106,0.6);
+  color: #e0b36a;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition:
+    background .15s ease,
+    color .15s ease,
+    transform .15s ease,
+    box-shadow .15s ease;
+}
+
+.btn-wishlist:hover {
+  background: rgba(224,179,106,0.12);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(224,179,106,0.25);
+}
+
+.btn-wishlist.is-active {
+  background: rgba(245,130,130,0.18);
+  color: #f58282;
+  border-color: rgba(245,130,130,0.6);
+  box-shadow: none;
+}
+
+.btn-wishlist.is-active:hover {
+  background: rgba(245,130,130,0.22);
+}
+
+/* ===== GOLD RADIO ===== */
+.cart-radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(230,194,122,0.6);
+  background: #1b1b1b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.cart-radio::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e6c27a, #c8943f, #9a6732);
+  transform: scale(0);
+  transition: transform 0.15s ease;
+}
+
+/* checked */
+label input:checked + .cart-radio::after {
+  transform: scale(1);
+}
+
+label:hover .cart-radio {
+  border-color: #e6c27a;
+}
+
+/* delete */
+.btn-danger {
+  padding: 6px 0;
+  width: 60px;
+  border-radius: 6px;
+  border: 1px solid rgba(245,130,130,0.5);
+  background: rgba(245,130,130,0.15);
+  color: #f58282;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background: rgba(245,130,130,0.25);
+}
+
+/* ===== SMALL ACTION BUTTON (Address / List) ===== */
+.btn-sm {
+  min-width: 64px;
+  padding: 6px 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ===== PAGINATION ===== */
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* button chung */
+.pagination-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(224,179,106,0.45);
+  background: #0f0f0f;
+  color: #e0b36a;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: rgba(224,179,106,0.15);
+  transform: translateY(-1px);
+}
+
+/* disabled */
+.pagination-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: #0b0b0b;
+  color: #777;
+}
+
+/* page number */
+.pagination-page {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(224,179,106,0.45);
+  background: #0f0f0f;
+  color: #e0b36a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-page:hover {
+  background: rgba(224,179,106,0.15);
+}
+
+/* current page */
+.pagination-page.active {
+  background: linear-gradient(135deg, #e0b36a, #b8832f, #8a5a2b);
+  color: #1b1b1b;
+  border: none;
+  font-weight: 600;
+}

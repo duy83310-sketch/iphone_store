@@ -22,7 +22,7 @@
   color: #fff;
   border-radius: 8px;
   padding: 4px 8px;
-  background: linear-gradient(90deg, rgba(255,191,112,0.30), rgba(198,121,45,0.18), rgba(255,191,112,0.30));
+  background: linear-gradient(135deg, #e0b36a, #b8832f, #8a5a2b);
 }
 
 /* ---- SEARCH ---- */
@@ -104,6 +104,64 @@
   cursor: pointer;
   font-size: 14px;
   margin-left: 14px;
+}
+
+/* Avatar styles */
+.avatar-wrap{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.avatar-img{
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.06);
+}
+
+.avatar-placeholder{
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #444;
+  color: #fff;
+  font-weight: 600;
+}
+
+.avatar-dropdown{
+  position: absolute;
+  top: 100%;
+  right: 0;
+  display: none;
+  min-width: 160px;
+  background: #222;
+  border: 1px solid #333;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  z-index: 60;
+}
+
+/* keep dropdown visible while hovering it as well (avoid flicker when moving mouse) */
+.avatar-wrap:hover .avatar-dropdown,
+.avatar-dropdown:hover {
+  display: block;
+}
+
+.avatar-dropdown .logout-btn.small{
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  margin: 0;
+  color: #fff;
+  background: transparent;
+  border-top: 1px solid #333;
 }
 
 .username{

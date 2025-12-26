@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../styles/pages/login.css";
+import { API } from "../utils/config";
+import { toast } from "react-toastify";
 
 export default function Register() {
   const [data, setData] = useState({
@@ -20,16 +22,16 @@ export default function Register() {
     e.preventDefault();
 
     if (!data.name || !data.email || !data.password) {
-      alert("Vui lòng nhập đầy đủ thông tin!");
+      toast.warn("Vui lòng nhập đầy đủ thông tin!");
       return;
     }
 
     if (data.password !== data.confirmPassword) {
-      alert("Mật khẩu nhập lại không khớp!");
+      toast.warn("Mật khẩu nhập lại không khớp!");
       return;
     }
 
-    fetch("http://localhost:5000/auth/register", {
+    fetch(`${API}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)

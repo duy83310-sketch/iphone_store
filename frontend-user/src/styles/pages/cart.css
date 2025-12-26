@@ -1,0 +1,31 @@
+.cart-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid rgba(230,194,122,0.6);
+  background: #1b1b1b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.cart-checkbox::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(135deg, #e6c27a, #c8943f, #9a6732);
+  border-radius: 3px;
+  transform: scale(0);
+  transition: transform 0.15s ease;
+}
+
+/* checked */
+label input:checked + .cart-checkbox::after {
+  transform: scale(1);
+}
+
+label:hover .cart-checkbox {
+  border-color: #e6c27a;
+}

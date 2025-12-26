@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import FeaturedProduct from "../components/FeaturedProduct";
-import ProductGrid from "../components/ProductGrid";
-import HotDeals from "../components/HotDeals";
-import NewsSection from "../components/NewsSection";
-import FAQSection from "../components/FAQSection";
-import "../styles/components/home.css";
+import FeaturedProduct from "../components/product/FeaturedProduct";
+import ProductSection from "../components/product/ProductSection";
+import NewsSection from "../components/news/NewsSection";
+import FAQSection from "../components/faq/FAQSection";
+import { API } from "../utils/config";
+import "../styles/pages/home.css";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -12,7 +12,7 @@ export default function Home() {
 
   // Fetch products
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch(`${API}/products`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -29,7 +29,7 @@ export default function Home() {
       {/* BANNER */}
       <div style={{ marginBottom: 30 }}>
         <img
-          src="http://localhost:5173/images/banner_ip17.png"
+          src="/images/banner_ip17.png"
           alt="banner"
           style={{
             width: "100%",
@@ -53,9 +53,11 @@ export default function Home() {
         {products.length === 0 ? (
           <p>Đang tải...</p>
         ) : (
-          <ProductGrid
-            products={products.filter((p) => p.new === true)}
-            columns={3}
+
+          <ProductSection
+            products={products}
+            filter="new"
+            link="/products?filter=new"
           />
         )}
       </div>
@@ -63,7 +65,11 @@ export default function Home() {
       {/* HOT DEALS */}
       <div className="section">
         <h2 className="title">🔥 Ưu đãi HOT</h2>
-        <HotDeals products={products.filter((p) => p.hot === true)} />
+        <ProductSection
+          products={products}
+          filter="hot"
+          link="/products?filter=hot"
+        />
       </div>
       
       {/* NEWS */}

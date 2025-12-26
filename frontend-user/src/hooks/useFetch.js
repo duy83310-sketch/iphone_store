@@ -1,7 +1,6 @@
 // src/hooks/useFetch.js
 import { useEffect, useState, useCallback } from "react";
-
-const API_BASE = "http://localhost:5000";
+import { API } from "../utils/config";
 
 export default function useFetch(path) {
   const [data, setData] = useState(null);
@@ -12,7 +11,7 @@ export default function useFetch(path) {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${API_BASE}${path}`);
+      const res = await fetch(`${API}${path}`);
       if (!res.ok) throw new Error(`HTTP error ${res.status}`);
       const json = await res.json();
       setData(json);
@@ -22,7 +21,7 @@ export default function useFetch(path) {
     } finally {
       setLoading(false);
     }
-  }, [path]);
+  }, [path, API]);
 
   useEffect(() => {
     fetchData();

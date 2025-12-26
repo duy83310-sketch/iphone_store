@@ -13,4 +13,4 @@ npm run dev
 4) Open mongosh.exe:
 show dbs
 use iphone_store
-db.products.find()
+db.products.find() 
